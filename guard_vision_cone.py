@@ -62,7 +62,7 @@ sight_radius = Slider(ax_sight_radius, 'Sight Radius', 100, 4000, valinit=3000)
 
 theta=np.linspace(0, 2*np.pi, 400)
 
-def plot_vision_cone(plot: Axes, light_amount: float, 
+def plot_vision_cone(plot: Axes, light_amount: float,
                      n_angle_weight_y: float, n_distance_weight_y: float, n_light_weight_y: float,
                      n_angle_weight_r: float, n_distance_weight_r: float, n_light_weight_r: float):
     plot.clear()
@@ -79,7 +79,7 @@ def plot_vision_cone(plot: Axes, light_amount: float,
     plot.plot(theta, r_red, color='red', linewidth=2)
     plot.fill_between(theta, 0, r_red, alpha=0.2, color='red')
     plot.fill_between(theta, 0, r_yellow, alpha=0.2, color='yellow')
-    
+
 def normalize_weights(a: float, d: float, l: float) -> (float, float, float):
     t: float = a+d+l
     print(a, d, l, t)
@@ -88,7 +88,7 @@ def normalize_weights(a: float, d: float, l: float) -> (float, float, float):
 def update(val):
     n_angle_weight_y, n_distance_weight_y, n_light_weight_y = normalize_weights(angle_weight_y.val, distance_weight_y.val, light_weight_y.val)
     n_angle_weight_r, n_distance_weight_r, n_light_weight_r = normalize_weights(angle_weight_r.val, distance_weight_r.val, light_weight_r.val)
-    
+
     plot_vision_cone(stationary_plot, stationary_light_amount.val,
                      n_angle_weight_y, n_distance_weight_y, n_light_weight_y,
                      n_angle_weight_r, n_distance_weight_r, n_light_weight_r)
